@@ -96,8 +96,11 @@ namespace dnlib.DotNet.MD {
 		public ImageCor20Header(ref DataReader reader, bool verify) {
 			SetStartOffset(ref reader);
 			cb = reader.ReadUInt32();
-			if (verify && cb < 0x48)
+			if (verify && cb < 0x48) {
+#if DEBUG
 				throw new BadImageFormatException("Invalid IMAGE_COR20_HEADER.cb value");
+#endif
+			}
 			majorRuntimeVersion = reader.ReadUInt16();
 			minorRuntimeVersion = reader.ReadUInt16();
 			metadata = new ImageDataDirectory(ref reader, verify);
