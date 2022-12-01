@@ -8,7 +8,6 @@ namespace dnlib {
 		/// <summary>
 		/// <c>true</c> if dnlib is thread safe. (<c>THREAD_SAFE</c> was defined during compilation)
 		/// </summary>
-		// Test submodule
 		public static bool IsThreadSafe {
 			get {
 #if THREAD_SAFE
