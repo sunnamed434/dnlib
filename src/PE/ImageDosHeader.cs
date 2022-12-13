@@ -24,8 +24,10 @@ namespace dnlib.PE {
 		public ImageDosHeader(ref DataReader reader, bool verify) {
 			SetStartOffset(ref reader);
 			ushort sig = reader.ReadUInt16();
+#if DEBUG
 			if (verify && sig != 0x5A4D)
 				throw new BadImageFormatException("Invalid DOS signature");
+#endif
 			reader.Position = (uint)startOffset + 0x3C;
 			ntHeadersOffset = reader.ReadUInt32();
 			SetEndoffset(ref reader);
